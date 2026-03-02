@@ -1,0 +1,6 @@
+@LegacyDotnetApp_HostAddress = http://localhost:5172
+
+GET {{LegacyDotnetApp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
