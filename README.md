@@ -24,3 +24,20 @@ same failures as Phase 1:
 it does not resolve them. The container boundary is not an abstraction 
 layer for application behavior — only for infrastructure deployment.
 This is the silent risk in lift-and-shift migrations.
+
+## Phase 3: Resolving Environment Assumptions Architecturally
+
+Fixes were not cosmetic — each one represents a deliberate 
+architectural decision:
+
+- `Path.Combine` with `SpecialFolder.UserProfile` replaces hardcoded 
+  `C:\` paths — resolves correctly on any OS at runtime
+- `Environment.NewLine` replaces hardcoded CRLF — delegates 
+  line ending behavior to the host environment
+- `SpecialFolder.UserProfile` replaces `USERPROFILE` env variable — 
+  uses .NET's cross-platform abstraction layer instead of 
+  OS-specific variables
+
+**Key observation:** The fix is not "make it work on Linux." 
+The fix is "stop assuming an operating system." These are 
+different problems with different solutions.
