@@ -58,3 +58,9 @@ Codespace vs the container — and both were correct. This is the
 difference between hardcoding environment assumptions and delegating 
 resolution to the runtime. The fix works across environments 
 without modification.
+
+## Operational Lessons
+
+- Containerization relocates assumptions; it does not eliminate them.
+- Cross-platform compatibility requires architectural abstraction, not patching.
+- Deployment boundaries and runtime boundaries are not the same.
