@@ -41,3 +41,20 @@ architectural decision:
 **Key observation:** The fix is not "make it work on Linux." 
 The fix is "stop assuming an operating system." These are 
 different problems with different solutions.
+
+## Phase 4: Fixed App Running in Container
+
+Rebuilding the container with the corrected code confirms 
+the architectural fixes hold across environment boundaries:
+
+- `logPath` resolves to `/root/logs/app.log` — valid Linux path 
+  built dynamically for the container's root user
+- `lineEnding` confirms Unix LF inside the container
+- `userHome` is `/root` — different from the Codespace environment 
+  (`/home/codespace`) but resolved correctly in both cases
+
+**Key observation:** The same code produced different paths in the 
+Codespace vs the container — and both were correct. This is the 
+difference between hardcoding environment assumptions and delegating 
+resolution to the runtime. The fix works across environments 
+without modification.
